@@ -20,27 +20,27 @@ Este proyecto está diseñado para practicar el uso de Zustand, una solución pe
 Zustand te permite crear stores que contienen tu estado y proporcionan métodos para actualizarlo. Aquí hay un ejemplo básico:
 
 ```javascript
-import create from 'zustand';
+import create from 'zustand'
 
 const useStore = create((set) => ({
   count: 0,
   increment: () => set((state) => ({ count: state.count + 1 })),
   decrement: () => set((state) => ({ count: state.count - 1 })),
-}));
+}))
 ```
 
 Luego úsalo en tus componentes:
 
 ```javascript
 function Counter() {
-  const { count, increment, decrement } = useStore();
+  const { count, increment, decrement } = useStore()
   return (
     <div>
       <button onClick={decrement}>-</button>
       <span>{count}</span>
       <button onClick={increment}>+</button>
     </div>
-  );
+  )
 }
 ```
 
