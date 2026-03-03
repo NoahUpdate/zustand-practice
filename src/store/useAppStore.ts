@@ -9,7 +9,16 @@ interface IAppStore {
 
 export const useAppStore = create<IAppStore>((set) => ({
   cant: 0,
-  increase: () => set((state) => ({ cant: state.cant + 1 })),
-  decrease: () => set((state) => ({ cant: state.cant - 1 })),
-  updateCant: (newCant) => set({ cant: newCant }),
+  increase: () =>
+    set((state) => ({
+      cant: state.cant + 1,
+    })),
+  decrease: () =>
+    set((state) => ({
+      cant: state.cant - 1,
+    })),
+  updateCant: (newCant) =>
+    set({
+      cant: newCant,
+    }),
 }))

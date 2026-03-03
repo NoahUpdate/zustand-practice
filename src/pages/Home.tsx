@@ -26,7 +26,7 @@ const Home = () => {
         <button
           type="button"
           onClick={increase}
-          className="flex-1 rounded-xl bg-slate-900 px-4 py-3 text-lg font-semibold text-white transition hover:bg-slate-700"
+          className="flex-1 rounded-xl bg-blue-500 dark:bg-slate-900 px-4 py-3 text-lg font-semibold text-white transition hover:bg-slate-700"
         >
           +
         </button>

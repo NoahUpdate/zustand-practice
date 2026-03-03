@@ -1,47 +1,59 @@
 import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
 import Home from './pages/Home'
 import About from './pages/About'
 import { useAppStore } from './store/useAppStore.ts'
+import { useThemeStore } from './store/useThemeStore.ts'
+import NavLayout from './NavLayout.tsx'
 
 const AppLayout = () => {
   const cant = useAppStore((state) => state.cant)
+  const theme = useThemeStore((state) => state.theme)
+
+  useEffect(() => {
+    const root = document.documentElement
+    root.classList.remove('light', 'dark')
+    root.classList.add(theme)
+  }, [theme])
+
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900">
-      <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10 sm:px-6">
-        <header className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-          <nav className="flex items-center justify-between">
-            <h1 className="text-lg font-semibold tracking-tight">Contadores</h1>
-            <div className="flex gap-2">
-              <Link
-                to="/"
-                className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-              >
-                About
-              </Link>
+    <>
+      <NavLayout />
+      <div className="min-h-screen bg-slate-100 text-slate-900">
+        <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10 sm:px-6">
+          <header className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+            <nav className="flex items-center justify-between">
+              <h1 className="text-lg font-semibold tracking-tight">Contadores</h1>
+              <div className="flex gap-2">
+                <Link
+                  to="/"
+                  className="rounded-lg bg-blue-500 dark:bg-slate-900 px-3 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/about"
+                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                >
+                  About
+                </Link>
+              </div>
+            </nav>
+          </header>
+
+          <section className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <Outlet />
+          </section>
+
+          <section className="rounded-2xl border border-dashed border-slate-300 bg-white/80 p-4">
+            <h2 className="text-sm font-semibold text-slate-700">Espacio compartido elemento de carrito</h2>
+            <div className="mt-2 min-h-14 rounded-xl bg-slate-50 p-3 text-sm text-slate-500">
+              Aqui esta el contador personal pequenio. {cant}
             </div>
-          </nav>
-        </header>
-
-        <section className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-          <Outlet />
-        </section>
-
-        <section className="rounded-2xl border border-dashed border-slate-300 bg-white/80 p-4">
-          <h2 className="text-sm font-semibold text-slate-700">
-            Espacio compartido elemento de carrito
-          </h2>
-          <div className="mt-2 min-h-14 rounded-xl bg-slate-50 p-3 text-sm text-slate-500">
-            Aqui esta el contador personal pequenio. {cant}
-          </div>
-        </section>
-      </main>
-    </div>
+          </section>
+        </main>
+      </div>
+    </>
   )
 }
 
