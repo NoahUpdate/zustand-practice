@@ -17,7 +17,7 @@ const About = () => {
       <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Pagina About</p>
       <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Segunda pagina activa</h2>
       <p className="text-sm text-slate-600">
-        Esta vista se mantiene simple para que puedas seguir agregando funcionalidades.
+        Esta vista se mantiene simple para que puedas seguir agregando funcionalidades. y este es un cambio nuevo.
       </p>
       <div className="flex items-center justify-center">
         <p className="text-sm"> Ingresa el valor actual:</p>
